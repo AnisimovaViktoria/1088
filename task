@@ -1,0 +1,43 @@
+using System;
+
+namespace _1088
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int D, E, F, Dp, Ep, H;
+            string[] input = Console.ReadLine().Split(' ');
+            D = int.Parse(input[0]);
+            E = int.Parse(input[1]);
+            F = int.Parse(input[2]);
+            Dp = int.Parse(input[3]);
+            Ep = int.Parse(input[4]);
+            H = int.Parse(input[5]);
+            Dp = (Dp + (1 << F) - 1) >> D;
+            Ep = (Ep + (1 << F) - 1) >> E;
+            int a = 0;
+            while (true)
+            {
+                for (int i = Dp, b = 0; i != 0; i /= 2, b++)
+                {
+                    if (i == Ep)
+                    {
+                        if (a + b <= H)
+                        {
+                            Console.WriteLine("YES");
+                            return;
+                        }
+                        else
+                        {
+                            Console.WriteLine("NO");
+                            return;
+                        }
+                    }
+                }
+                Ep /= 2;
+                a++;
+            }
+        }
+    }
+}
